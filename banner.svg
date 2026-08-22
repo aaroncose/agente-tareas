@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="adhd-agent — recordatorios por llamada telefónica">
+
+  <rect width="1200" height="320" fill="#191527"/>
+
+  <text x="64" y="98"
+        font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace"
+        font-size="44" font-weight="500" letter-spacing="-0.5" fill="#F0ECF7">adhd-agent</text>
+
+  <text x="64" y="136"
+        font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif"
+        font-size="18" font-weight="400" fill="#8E86A8">Recordatorios por llamada telefónica. AWS, Notion, Connect, Lex, Bedrock.</text>
+
+  <line x1="64" y1="230" x2="1064" y2="230" stroke="#2E2841" stroke-width="1.5"/>
+  <line x1="314" y1="196" x2="314" y2="264" stroke="#2E2841" stroke-width="1" stroke-dasharray="2 4"/>
+
+  <g font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace"
+     font-size="13" fill="#8E86A8" text-anchor="middle">
+    <text x="64" y="204">H−5</text>
+    <text x="314" y="204">H</text>
+    <text x="564" y="204">H+5</text>
+    <text x="1064" y="204">H+15</text>
+  </g>
+
+  <circle cx="64" cy="230" r="5.5" fill="none" stroke="#5FC9C0" stroke-width="1.8"/>
+
+  <circle cx="314" cy="230" r="14" fill="none" stroke="#F2B33C" stroke-width="1" opacity="0.28"/>
+  <circle cx="314" cy="230" r="6.5" fill="#F2B33C"/>
+
+  <circle cx="564" cy="230" r="14" fill="none" stroke="#F2B33C" stroke-width="1" opacity="0.28"/>
+  <circle cx="564" cy="230" r="6.5" fill="#F2B33C"/>
+
+  <circle cx="1064" cy="230" r="26" fill="none" stroke="#EF5F6B" stroke-width="1" opacity="0.16"/>
+  <circle cx="1064" cy="230" r="17" fill="none" stroke="#EF5F6B" stroke-width="1" opacity="0.32"/>
+  <circle cx="1064" cy="230" r="7.5" fill="#EF5F6B"/>
+
+  <g font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif"
+     font-size="13" fill="#8E86A8" text-anchor="middle">
+    <text x="64" y="264">push</text>
+    <text x="314" y="264">llamada</text>
+    <text x="564" y="264">reintento</text>
+    <text x="1064" y="264">última</text>
+  </g>
+
+</svg>

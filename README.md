@@ -1,3 +1,4 @@
+![adhd-agent](banner.svg)
 # Agente TDAH
 
 Sistema de recordatorios por llamada telefónica construido sobre AWS. Apuntas una tarea en Notion con fecha, hora y tipo. El sistema envía una notificación push cinco minutos antes, llama por teléfono a la hora indicada, e insiste según la importancia de la tarea si no contestas.
