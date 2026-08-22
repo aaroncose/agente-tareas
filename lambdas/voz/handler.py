@@ -103,7 +103,29 @@ def handler(event, context):
     return responder(nombre or "Fallback", "No te he entendido.")
 
 
+bedrock = boto3.client("bedrock-runtime")
+MODELO = "eu.anthropic.claude-haiku-4-5-20251001-v1:0"
+
+
 def generar_plan(titulo):
-    """Se completa en la Fase 11. De momento, respuesta fija."""
-    return ("Empieza por lo mas pequeno. Abre el archivo, "
-            "escribe el titulo, y haz solo el primer punto.")
+    prompt = (
+        f"Tarea: {titulo}. Da exactamente tres pasos muy concretos y pequenos "
+        f"para empezarla ahora mismo. Cada paso en una frase corta. "
+        f"Sin numeracion, sin introduccion, sin despedida. "
+        f"Responde en espanol para ser leido en voz alta por telefono."
+    )
+    try:
+        r = bedrock.invoke_model(
+            modelId=MODELO,
+            body=json.dumps({
+                "anthropic_version": "bedrock-2023-05-31",
+                "max_tokens": 300,
+                "messages": [{"role": "user", "content": prompt}],
+            }),
+        )
+        cuerpo = json.loads(r["body"].read())
+        return cuerpo["content"][0]["text"]
+    except Exception as e:
+        log("ERROR", "bedrock_fallo", error=str(e))
+        return ("Empieza por lo mas pequeno. Abre el archivo, "
+                "escribe el titulo, y haz solo el primer punto.")

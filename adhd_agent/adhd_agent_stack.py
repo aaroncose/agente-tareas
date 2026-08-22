@@ -64,6 +64,16 @@ class AdhdAgentStack(Stack):
         notificador = fn("Notificador", "notificador")
         verificador = fn("Verificador", "verificador")
         voz = fn("Voz", "voz")
+        voz.add_to_role_policy(
+            iam.PolicyStatement(
+                effect=iam.Effect.ALLOW,
+                actions=["bedrock:InvokeModel"],
+                resources=[
+                    f"arn:aws:bedrock:*::foundation-model/anthropic.claude-haiku-4-5-20251001-v1:0",
+                    f"arn:aws:bedrock:{self.region}:{self.account}:inference-profile/eu.anthropic.claude-haiku-4-5-20251001-v1:0",
+                ],
+            )
+        )
 
         notificador.add_to_role_policy(
             iam.PolicyStatement(
@@ -182,3 +192,36 @@ class AdhdAgentStack(Stack):
         recurso.add_method("POST", apigw.LambdaIntegration(receptor))
 
         CfnOutput(self, "WebhookUrl", value=f"{api.url}hook")
+
+        cloudwatch.Alarm(
+            self, "ReceptorErrores",
+            alarm_name="adhd-agent-receptor-fallando",
+            metric=receptor.metric_errors(
+                period=Duration.minutes(15), statistic="Sum"),
+            threshold=1,
+            evaluation_periods=1,
+            comparison_operator=cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
+            treat_missing_data=cloudwatch.TreatMissingData.NOT_BREACHING,
+        )
+
+        cloudwatch.Alarm(
+            self, "NotificadorErrores",
+            alarm_name="adhd-agent-notificador-fallando",
+            metric=notificador.metric_errors(
+                period=Duration.minutes(15), statistic="Sum"),
+            threshold=1,
+            evaluation_periods=1,
+            comparison_operator=cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
+            treat_missing_data=cloudwatch.TreatMissingData.NOT_BREACHING,
+        )
+
+        cloudwatch.Alarm(
+            self, "EscaladaFallida",
+            alarm_name="adhd-agent-escalada-fallando",
+            metric=maquina.metric_failed(
+                period=Duration.minutes(15), statistic="Sum"),
+            threshold=1,
+            evaluation_periods=1,
+            comparison_operator=cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
+            treat_missing_data=cloudwatch.TreatMissingData.NOT_BREACHING,
+        )
