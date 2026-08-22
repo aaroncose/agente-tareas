@@ -167,3 +167,18 @@ class AdhdAgentStack(Stack):
 
         maquina.grant_start_execution(programador)
         programador.add_environment("STATE_MACHINE_ARN", maquina.state_machine_arn)
+
+        # --- RECEPTOR Y API ---
+        receptor = fn("Receptor", "receptor")
+        receptor.add_environment("PROGRAMADOR_ARN", programador.function_name)
+        programador.grant_invoke(receptor)
+
+        api = apigw.RestApi(
+            self, "Api",
+            rest_api_name="adhd-agent-api",
+            deploy_options=apigw.StageOptions(stage_name="prod"),
+        )
+        recurso = api.root.add_resource("hook")
+        recurso.add_method("POST", apigw.LambdaIntegration(receptor))
+
+        CfnOutput(self, "WebhookUrl", value=f"{api.url}hook")
