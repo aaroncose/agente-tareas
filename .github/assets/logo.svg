@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 140" width="320" height="140" role="img" aria-label="Agente de Tareas">
+  <title>Agente de Tareas</title>
+
+  <!--
+    Represento la escalada de avisos. El punto ámbar es la hora de la tarea y
+    los tres arcos son el aviso, la llamada y los reintentos, cada uno más
+    lejos que el anterior.
+
+    Versión para el tema claro de GitHub. La pareja en oscuro vive en
+    logo-dark.svg y el README elige una con <picture>.
+  -->
+  <g fill="none" stroke="#232F3E" stroke-linecap="round">
+    <!-- Aviso previo -->
+    <path d="M132 44 A 46 46 0 0 1 132 96" stroke-width="13" />
+    <!-- Llamada a la hora -->
+    <path d="M166 28 A 74 74 0 0 1 166 112" stroke-width="13" opacity="0.72" />
+    <!-- Reintento -->
+    <path d="M200 12 A 102 102 0 0 1 200 128" stroke-width="13" opacity="0.44" />
+  </g>
+
+  <!-- La hora de la tarea, de donde sale todo -->
+  <circle cx="96" cy="70" r="26" fill="#FF9900" />
+</svg>
