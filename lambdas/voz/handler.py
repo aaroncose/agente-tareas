@@ -73,7 +73,7 @@ bedrock = boto3.client(
     config=Config(retries={"max_attempts": 3, "mode": "adaptive"}),
 )
 MODELO = "eu.anthropic.claude-haiku-4-5-20251001-v1:0"
-MAX_TURNOS = 12
+MAX_TURNOS = 80
 
 SISTEMA = (
     "Hablas por telefono con una persona sobre una tarea suya pendiente. "
@@ -129,7 +129,7 @@ def hablar(historial, titulo, tarde):
         modelId=MODELO,
         system=[{"text": sistema}],
         messages=mensajes,
-        inferenceConfig={"maxTokens": 120, "temperature": 0.6},
+        inferenceConfig={"maxTokens": 200, "temperature": 0.6},
     )
     return r["output"]["message"]["content"][0]["text"].strip()
 
