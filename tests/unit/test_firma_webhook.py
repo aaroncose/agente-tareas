@@ -67,8 +67,7 @@ def test_rechaza_cuando_mi_secreto_esta_vacio(receptor):
 
 def test_la_comparacion_resiste_ataques_de_tiempo(receptor):
     # Compruebo que uso compare_digest, que tarda lo mismo con una firma
-    # equivocada al principio que al final. Una comparación normal con == deja
-    # deducir la firma correcta midiendo tiempos.
+    # equivocada al principio que al final.
     import inspect
 
     codigo = inspect.getsource(receptor.firma_valida)

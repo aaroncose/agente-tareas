@@ -1,7 +1,7 @@
 """Tests de la conversión de fechas que me llegan desde Notion.
 
-Notion manda la fecha en varios formatos según cómo se creó la tarea. Un error
-aquí desplaza la llamada un par de horas y resulta difícil de ver porque el
+Notion manda la fecha en varios formatos según cómo se creó la tarea. Si aqui
+hay error aquí desplaza la llamada un par de horas ya que el
 sistema sigue funcionando y solo suena a destiempo.
 """
 

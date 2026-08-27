@@ -1,6 +1,6 @@
 """Tests de la infraestructura que sintetizo con CDK.
 
-Comprueban la plantilla de CloudFormation antes de desplegarla, así que
+Comprueban la plantilla de CloudFormation antes de desplegarla, así
 detectan un recurso que desaparece o cambia sin que yo lo pretenda.
 """
 

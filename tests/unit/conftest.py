@@ -1,8 +1,8 @@
 """Utilidades que comparten mis tests de handlers.
 
-Cada lambda vive en su propia carpeta con un `common.py` al lado, así que las
+Cada lambda vive en su propia carpeta con un common.py al lado, así que las
 cargo por ruta de archivo y añado su carpeta al path para que el import de
-`common` resuelva.
+common resuelva.
 """
 
 import importlib.util

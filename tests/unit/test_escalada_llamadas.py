@@ -1,8 +1,5 @@
 """Tests de cómo planifico las llamadas según la importancia de la tarea.
-
-Aquí decido cuántas veces insisto y con cuánto margen. Un fallo en esta pieza
-se traduce en llamadas de más a deshora o en una tarea urgente que suena una
-sola vez.
+Decido cuántas veces insisto y con cuánto margen.
 """
 
 from datetime import datetime, timedelta, timezone
@@ -94,7 +91,7 @@ def test_una_tarea_futura_queda_como_pendiente(programador):
 # ---------- datos que conservo ----------
 
 def test_el_plan_conserva_los_datos_de_la_tarea(programador):
-    # El identificador viaja por toda la máquina de estados, así que compruebo
+    # El identificador viaja por toda la máquina de estados así que compruebo
     # que sobrevive al cálculo.
     plan = programador.calcular(tarea("Urgente", dentro_de(30)))
 
