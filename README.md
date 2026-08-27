@@ -13,14 +13,14 @@
 ![Serverless](https://img.shields.io/badge/Arquitectura-Serverless-232F3E)
 [![Licencia MIT](https://img.shields.io/badge/Licencia-MIT-3DA639)](LICENSE)
 
-Apunto una tarea en Notion con su hora y su nivel de importancia. El sistema me
-avisa cinco minutos antes, me llama por teléfono a la hora exacta, e insiste
-según lo importante que sea la tarea.
+La utilidad de este agente es recordar y ayudar a las tareas que apunto en Notion con su hora y su nivel de importancia. 
+El sistema me avisa cinco minutos antes mediante notificación push al móvil via ntfy, me llama por teléfono a la 
+hora exacta, e insiste según lo importante que sea la tarea.
 
-Al descolgar tengo delante un asistente que se queda conmigo hasta que la tarea
+Al descolgar tengo hablo con asistente de voz que se queda conmigo hasta que la tarea
 está resuelta. Le pido que me la desglose en pasos, que me saque de donde me he
 atascado o cualquier otra cosa que surja mientras hablamos, y él sigue el hilo
-de la conversación entera. Cuando colgamos, deja Notion actualizado.
+de la conversación entera. Cuando colgamos, me deja Notion actualizado.
 
 > **Estado** — Desplegado y funcionando de extremo a extremo sobre AWS,
 > incluida la llamada saliente a números españoles.
@@ -101,7 +101,7 @@ REINTENTO_URGENTE_2 = 15
 ## La conversación
 
 Al descolgar, Polly lee un saludo con el título de la tarea. A partir de ahí
-hablo con el agente por turnos.
+hablo con el agente de Lex por turnos.
 
 Cada cosa que digo entra por Lex y llega a la Lambda `voz`, que recupera el
 historial de la conversación desde DynamoDB, se lo pasa entero a Bedrock y
@@ -129,7 +129,7 @@ añade `[HECHA]` al final de su respuesta, y cuando la conversación se da por
 terminada añade `[FIN]`. La Lambda retira esos marcadores antes de que suenen,
 actualiza Notion si toca y cierra la sesión de Lex.
 
-Al llegar a 12 turnos la conversación se cierra igualmente.
+Al llegar a 12 turnos la conversación se cierra igualmente (lo he configurado así de momento).
 
 ---
 
@@ -152,7 +152,7 @@ mi número. Cubren la firma correcta, la manipulada, el cuerpo alterado
 conservando una firma legítima, la firma hecha con otro secreto y el caso de un
 secreto vacío por error de configuración.
 
-GitHub Actions ejecuta la batería completa en cada push.
+GitHub Actions en cada push.
 
 ---
 
@@ -183,7 +183,7 @@ pip install -r requirements-dev.txt
 ```
 
 Creo el secreto con mis credenciales. El nombre `adhd-agent/config` viene del
-primer despliegue y lo conservo porque renombrarlo obligaría a recrear el
+primer despliegue y lo conservo porque renombrarlo me obliga a recrear el
 secreto y a redesplegar el stack entero.
 
 ```bash
@@ -218,7 +218,7 @@ suscripción en Notion.
 
 ## Configuración fuera del CDK
 
-Estos pasos van por consola.
+Estos pasos van por terminal.
 
 1. Base de datos en Notion con las propiedades `Tarea` (título), `Cuando` (fecha con hora), `Tipo` (selección entre Normal, Importante y Urgente) y `Estado` (selección entre Pendiente y Hecho)
 2. Integración de Notion conectada a esa base de datos
@@ -230,7 +230,7 @@ Estos pasos van por consola.
 8. `FallbackIntent` y `AyudaIntent` con el paso posterior al enlace de código puesto en **Wait for user input**, que es lo que sostiene el turno
 9. Asociación de la Lambda `adhd-agent-voz` a la instancia de Connect
 
-El paso 8 es el que convierte esto en una conversación. Con el valor por
+El paso 8 es el que hace de esto en una conversación. Con el valor por
 defecto, Lex cierra la sesión tras el primer turno y la llamada se queda en una
 locución.
 
