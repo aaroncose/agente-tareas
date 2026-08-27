@@ -9,8 +9,15 @@ on:
 
 jobs:
   pruebas:
-    name: Pruebas unitarias
+    name: Pruebas en Python ${{ matrix.python }}
     runs-on: ubuntu-latest
+
+    # Pruebo en la versión que corren mis Lambdas y en la que uso para
+    # desarrollar, así el "3.13 o superior" del README queda respaldado.
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.13", "3.14"]
 
     steps:
       - name: Descargo el repositorio
@@ -19,7 +26,7 @@ jobs:
       - name: Preparo Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: ${{ matrix.python }}
           cache: pip
 
       # CDK ejecuta su motor sobre Node, así que lo dejo disponible.

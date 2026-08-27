@@ -8,7 +8,7 @@
 # Agente de Tareas
 
 [![tests](https://github.com/aaroncose/agente-tareas/actions/workflows/tests.yml/badge.svg)](https://github.com/aaroncose/agente-tareas/actions/workflows/tests.yml)
-![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.13%2B-3776AB?logo=python&logoColor=white)
 ![AWS CDK](https://img.shields.io/badge/AWS%20CDK-2.x-FF9900)
 ![Serverless](https://img.shields.io/badge/Arquitectura-Serverless-232F3E)
 [![Licencia MIT](https://img.shields.io/badge/Licencia-MIT-3DA639)](LICENSE)
@@ -160,7 +160,7 @@ GitHub Actions en cada push.
 
 | Requisito | Versión |
 |---|---|
-| Python | 3.13 |
+| Python | 3.13 o superior |
 | Node.js | 22 o superior |
 | AWS CDK | 2.x |
 | Cuenta de AWS | Con Connect, Lex y Bedrock disponibles en `eu-central-1` |
