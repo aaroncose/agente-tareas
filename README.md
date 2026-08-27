@@ -17,9 +17,9 @@ La utilidad de este agente es recordar y ayudar a las tareas que apunto en Notio
 El sistema me avisa cinco minutos antes mediante notificación push al móvil via ntfy, me llama por teléfono a la 
 hora exacta, e insiste según lo importante que sea la tarea.
 
-Al descolgar tengo hablo con asistente de voz que se queda conmigo hasta que la tarea
+Al descolgar hablo con un asistente de voz que hasta que la tarea
 está resuelta. Le pido que me la desglose en pasos, que me saque de donde me he
-atascado o cualquier otra cosa que surja mientras hablamos, y él sigue el hilo
+atascado o cualquier otra cosa que surja mientras hablamos, y sigue el hilo
 de la conversación entera. Cuando colgamos, me deja Notion actualizado.
 
 > **Estado** — Desplegado y funcionando de extremo a extremo sobre AWS,
