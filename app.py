@@ -3,11 +3,15 @@ import os
 
 import aws_cdk as cdk
 
-from adhd_agent.adhd_agent_stack import AdhdAgentStack
+from agente_tareas.agente_tareas_stack import AgenteTareasStack
 
 
 app = cdk.App()
-AdhdAgentStack(app, "AdhdAgentStack",
+
+# Mantengo "AdhdAgentStack" como identificador porque es el nombre con el que
+# CloudFormation conoce mi stack desplegado. Cambiarlo crearía uno nuevo y
+# dejaría huérfanos la tabla, las Lambdas y la máquina de estados actuales.
+AgenteTareasStack(app, "AdhdAgentStack",
     # If you don't specify 'env', this stack will be environment-agnostic.
     # Account/Region-dependent features and context lookups will not work,
     # but a single synthesized template can be deployed anywhere.
