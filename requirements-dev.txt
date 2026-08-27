@@ -1,1 +1,5 @@
 pytest==8.4.2
+
+# Lambda incluye boto3 en su runtime. Lo declaro aquí para poder ejecutar en
+# local y en integración continua los tests de mis handlers.
+boto3==1.43.78
